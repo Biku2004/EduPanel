@@ -10,6 +10,7 @@ import Signup from './components/Signup.jsx';
 import { DarkModeProvider } from './context/DarkModeContext.jsx';
 import AnalyticsPage from './pages/AnalyticsPage.jsx';
 import Demo from './pages/DemoPage/Demo.jsx';
+import LandingPage from './pages/LandingPage/LandingPage.jsx';
 
 const AppContent = () => {
   const { isLoading } = useLoading();
@@ -24,7 +25,8 @@ const AppContent = () => {
         <Route path="/staff-signup" element={<Signup />} />
         <Route path="/dashboard/*" element={<Dashboard />} />
         <Route path="/analytics" element={<AnalyticsPage />} />
-        <Route path="/demo/*" element={<Demo />} /> {/* Add Demo route */}
+        <Route path="/demo/*" element={<Demo />} /> 
+        <Route path="/landing" element={<LandingPage />} /> 
       </Routes>
     </>
   );

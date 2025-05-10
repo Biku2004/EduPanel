@@ -17,6 +17,7 @@ const Dashboard = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [selectedStudent, setSelectedStudent] = useState(null);
   const [selectedCourse, setSelectedCourse] = useState(null);
+    const [showSidebar, setShowSidebar] = useState(false);
 
   const fetchStudents = async () => {
     setIsLoading(true);
@@ -139,19 +140,41 @@ const Dashboard = () => {
 
   const displayStudents = students.length > 0 ? students : sampleStudents;
 
+    const toggleSidebar = () => {
+      setShowSidebar(!showSidebar);
+    };
+
 
   return (
     <div className="flex flex-col md:flex-row min-h-screen bg-gray-100 dark:bg-gray-900">
-      <Sidebar />
+      
+        <div className="md:hidden bg-white dark:bg-gray-800 p-4 shadow-md flex justify-between items-center">
+        <h1 className="text-xl font-bold text-gray-800 dark:text-white">Babycode Dashboard</h1>
+        <button 
+          onClick={toggleSidebar}
+          className="text-gray-500 dark:text-gray-300 focus:outline-none"
+        >
+          <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+     <div className={`${showSidebar ? 'block' : 'hidden'} md:block md:w-64 bg-white dark:bg-gray-800 shadow-md`}>
+        <Sidebar />
+      </div>
       <div className="flex-1 p-6">
-      <Header/>
+        <div className="hidden md:block">
+          <Header />
+        </div>
+
+         <div className="p-4 md:p-6">
         <Routes>
           <Route
             path="/"
             element={
-              <div className="container mx-auto bg-white dark:bg-gray-800 p-6 rounded-lg shadow">
-                <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">Dashboard Overview</h2>
-                <p className="text-gray-700 dark:text-gray-300">Welcome to the Centurion University Student Management Dashboard.</p>
+                <div className="container mx-auto bg-white dark:bg-gray-800 p-4 md:p-6 rounded-lg shadow">
+                  <h2 className="text-xl md:text-2xl font-bold mb-4 text-gray-900 dark:text-white">Dashboard Overview</h2>
+                  <p className="text-gray-700 dark:text-gray-300 mb-4 md:mb-6">Welcome to the Centurion University Student Management Dashboard.</p>
                 
                 {/* 
                 <LineChart />
@@ -207,6 +230,7 @@ const Dashboard = () => {
           />
         </Routes>
       </div>
+    </div>
     </div>
   );
 };

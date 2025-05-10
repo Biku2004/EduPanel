@@ -220,7 +220,7 @@ const AddStudent = ({
             {selectedStudent && (
               <button
                 type="button"
-                className="ml-4 bg-gray-500 text-white py-2 px-4 rounded hover:bg-gray-600"
+                className="w-full sm:w-auto bg-gray-500 text-white py-2 px-4 rounded hover:bg-gray-600 text-sm sm:text-base"
                 onClick={() => {
                   setSelectedStudent(null);
                   setFormData({ name: '', email: '', course: '', enrollmentYear: '' });
@@ -234,16 +234,19 @@ const AddStudent = ({
         </form>
       </div>
 
-      <StudentTable
-        students={students}
-        setStudents={setStudents}
-        selectedCourse={selectedCourse}
-        setSelectedCourse={setSelectedCourse}
-        fetchStudents={fetchStudents}
-        handleEdit={handleEdit}
-        handleDelete={handleDelete}
-        isLoading={isLoading}
-      />
+      
+      <div className="overflow-x-auto">
+        <StudentTable
+          students={students}
+          setStudents={setStudents}
+          selectedCourse={selectedCourse}
+          setSelectedCourse={setSelectedCourse}
+          fetchStudents={fetchStudents}
+          handleEdit={handleEdit}
+          handleDelete={handleDelete}
+          isLoading={isLoading}
+        />
+      </div>
     </div>
   );
 };
